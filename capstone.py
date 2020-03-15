@@ -16,3 +16,6 @@ def get_all_files(basedir,ext='.h5') :
 
 af = get_all_files('c:/00/capdat')
 print(len(af))
+
+for f in af[:10]:
+    print(f)
