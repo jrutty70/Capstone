@@ -13,6 +13,3 @@ def get_all_files(basedir,ext='.h5') :
         for f in files :
             allfiles.append( os.path.abspath(f) )
     return allfiles
-
-af = get_all_files('c:/00/capdat')
-print(len(af))
