@@ -17,6 +17,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+"""
+Minor changes to work with P3.x
+print() and some iterator stuff
+"""
+
 #C:\00\CapDaT\millionsongsubset_full\MillionSongSubset\data\A\A\A\TRAAAAW128F429D538.h5
 
 
@@ -90,6 +95,7 @@ if __name__ == '__main__':
 
     # get all getters
     getters = filter(lambda x: x[:4] == 'get_', hdf5_getters.__dict__.keys())
+    getters = list(getters) 
     # getters.remove("get_num_songs") # special case
     ''' not sure what the special  case was but today it throws this error 
           AttributeError: 'filter' object has no attribute 'remove'
@@ -102,6 +108,7 @@ if __name__ == '__main__':
         if onegetter[:4] != 'get_':
             onegetter = 'get_' + onegetter
         try:
+            print(type(getters))
             getters.index(onegetter)
         except ValueError:
             print ('ERROR: getter requested:',onegetter,'does not exist.')
@@ -110,15 +117,15 @@ if __name__ == '__main__':
         getters = [onegetter]
     
     '''this and the next 2 lines added as part of PY 3 upgrade '''    
-    getters = list(getters)    
-    print(list(getters))    
+    #getters = list(getters)    
+    #print(list(getters))    
 
     getters = np.sort(getters)
                                             #''' some debug code '''
                                             #qq=getters.index("get_num_songs")
                                             #print('qq:',qq)
                                             #getters.remove("get_num_songs")
-    np.delete(getters, 0,0)  #then do the skipped delete from aboave  #getters.remove("get_num_songs") # special case
+    #np.delete(getters, 0,0)  #then do the skipped delete from aboave  #getters.remove("get_num_songs") # special case
     # print them
     for getter in getters:
         if getter == 'get_num_songs':continue
